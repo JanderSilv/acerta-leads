@@ -1,11 +1,15 @@
 import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
-  ${({ theme: { colors, space } }) => css`
+  ${({ theme: { colors, space, media } }) => css`
     width: 100%;
     min-height: 100vh;
-    padding: ${space[7]};
+    padding: ${space[3]};
     background-color: ${colors.blue100};
+
+    @media ${media.md} {
+      padding: ${space[7]};
+    }
   `}
 `
 
@@ -24,4 +28,8 @@ export const Container = styled.div`
     max-width: ${sizes.limit};
     margin-inline: auto;
   `}
+`
+
+export const Loading = styled.h2`
+  color: ${({ theme: { colors } }) => colors.white100};
 `

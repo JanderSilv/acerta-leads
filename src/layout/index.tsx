@@ -1,7 +1,8 @@
+import { Suspense } from 'react'
 import { acertaLogo } from 'src/assets'
 import { LayoutProvider } from 'src/contexts'
 import { useLayout } from 'src/hooks/useLayout'
-import { Container, Logo, Title, Wrapper } from './styles'
+import { Container, Loading, Logo, Title, Wrapper } from './styles'
 
 type LayoutProps = {
   children: React.ReactNode
@@ -14,7 +15,7 @@ const LayoutComponent = ({ children }: LayoutProps) => {
       <Container>
         <Logo src={acertaLogo} alt="Logo da Acerta" width="240" height="100" loading="lazy" draggable="false" />
         <Title>{title}</Title>
-        {children}
+        <Suspense fallback={<Loading>Carregando...</Loading>}>{children}</Suspense>
       </Container>
     </Wrapper>
   )
