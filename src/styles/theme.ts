@@ -46,8 +46,9 @@ export const theme = {
     limit: '1280px'
   },
   radii: {
+    box: '10px',
     button: '5px',
-    select: '4px'
+    input: '5px'
   },
   zIndices: {
     zero: 0,
@@ -70,3 +71,5 @@ export const theme = {
     xxl: '(min-width: 1930px)'
   }
 }
+
+export type Theme = typeof theme
