@@ -17,11 +17,15 @@ export const ButtonComponent = styled.button`
 
     display: block;
     cursor: pointer;
-    transition: ${transitions.buttonHover};
+    transition: ${transitions.buttonHover}, opacity 0.2s ease-in-out;
 
-    &:hover {
+    &:not(:disabled):hover {
       color: ${colors.white100};
       background-color: ${colors.gray100};
+    }
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
     }
   `}
 `
