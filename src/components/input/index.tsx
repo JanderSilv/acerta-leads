@@ -1,4 +1,5 @@
 import { forwardRef, ReactElement, Ref } from 'react'
+import { Field } from 'formik'
 import { Title } from '../title'
 import { ChevronDownIcon, InputComponent, InputGroupComponent, SelectComponent } from './styles'
 
@@ -8,6 +9,13 @@ export const Input = forwardRef((props: InputProps, ref: Ref<HTMLInputElement>) 
   <InputComponent type="text" {...props} ref={ref} />
 ))
 Input.displayName = 'Input'
+
+export type InputFieldProps = typeof InputComponent['defaultProps']
+
+export const InputField = forwardRef((props: InputFieldProps, ref: Ref<HTMLInputElement>) => (
+  <Field component={Input} {...props} ref={ref} />
+))
+InputField.displayName = 'InputField'
 
 export type SelectProps = typeof SelectComponent['defaultProps']
 
