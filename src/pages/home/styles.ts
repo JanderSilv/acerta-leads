@@ -1,3 +1,4 @@
+import { Form as FormikForm } from 'formik'
 import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
@@ -9,7 +10,7 @@ export const Wrapper = styled.div`
   `}
 `
 
-export const FiltersWrapper = styled.section`
+export const FiltersWrapper = styled(FormikForm)`
   ${({ theme: { colors, space, radii } }) => css`
     padding: ${space[3]};
     border-radius: ${radii.box};
