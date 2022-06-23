@@ -11,8 +11,8 @@ export const theme = {
     grayTwo100: '#989898'
   },
   fontSizes: {
-    1: '0.875rem', // 14px
-    2: '1rem', // 16px
+    1: '0.75rem', // 12px
+    2: '0.875rem', // 14px
     3: '1rem', // 16px
     4: '1.25rem', // 20px
     5: '1.5rem', // 24px
