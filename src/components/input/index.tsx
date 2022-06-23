@@ -10,10 +10,8 @@ export const Input = forwardRef((props: InputProps, ref: Ref<HTMLInputElement>) 
 ))
 Input.displayName = 'Input'
 
-export type InputFieldProps = typeof InputComponent['defaultProps']
-
-export const InputField = forwardRef((props: InputFieldProps, ref: Ref<HTMLInputElement>) => (
-  <Field component={Input} {...props} ref={ref} />
+export const InputField = forwardRef((props: InputProps, ref: Ref<HTMLInputElement>) => (
+  <Field name={props?.name}>{({ field }: FieldProps) => <Input {...field} {...props} ref={ref} />}</Field>
 ))
 InputField.displayName = 'InputField'
 
