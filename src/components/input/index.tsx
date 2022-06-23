@@ -25,6 +25,11 @@ export const Select = forwardRef((props: SelectProps, ref: Ref<HTMLSelectElement
 ))
 Select.displayName = 'Select'
 
+export const SelectField = forwardRef((props: SelectProps, ref: Ref<HTMLSelectElement>) => (
+  <Field name={props?.name}>{({ field }: FieldProps) => <Select {...field} {...props} ref={ref} />}</Field>
+))
+SelectField.displayName = 'SelectField'
+
 export type InputGroupProps = typeof InputGroupComponent['defaultProps'] & {
   label?: string
   helperText?: string
