@@ -38,7 +38,7 @@ export const SelectComponent = styled.select`
 
 export const ChevronDownIcon = styled(ChevronDown)`
   position: absolute;
-  bottom: 11px;
+  bottom: 34px;
   right: 10px;
   z-index: 2;
 `
