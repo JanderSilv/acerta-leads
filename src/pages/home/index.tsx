@@ -5,7 +5,7 @@ import { MdOutlineModeEditOutline as EditIcon, MdDeleteOutline as DeleteIcon } f
 
 import { CPFMask } from 'src/helpers'
 import { Button, IconButton, InputField, InputGroup, LayoutTitle, Title } from 'src/components'
-import { ButtonsCell, FiltersContainer, FiltersWrapper, Table, TableWrapper } from './styles'
+import { ButtonsCell, FiltersContainer, FiltersWrapper, Table, TableContainer, TableWrapper } from './styles'
 
 type Filters = {
   name?: string
@@ -63,44 +63,46 @@ const Home = () => {
         <Button as={Link} to="/cadastro">
           Novo Lead
         </Button>
-        <Table>
-          <thead>
-            <tr>
-              <th />
-              <th>Email</th>
-              <th>Nome</th>
-              <th>CPF</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <ButtonsCell>
-                <IconButton aria-label="Editar" title="Editar">
-                  <EditIcon />
-                </IconButton>
-                <IconButton aria-label="Deletar" title="Deletar">
-                  <DeleteIcon />
-                </IconButton>
-              </ButtonsCell>
-              <td>Jander.silv@outlook.com</td>
-              <td>João da Silva Siqueira</td>
-              <td>055.373.570-54</td>
-            </tr>
-            <tr>
-              <ButtonsCell>
-                <IconButton>
-                  <EditIcon />
-                </IconButton>
-                <IconButton>
-                  <DeleteIcon />
-                </IconButton>
-              </ButtonsCell>
-              <td>Jander.silv@outlook.com</td>
-              <td>João da Silva Siqueira</td>
-              <td>055.373.570-54</td>
-            </tr>
-          </tbody>
-        </Table>
+        <TableContainer>
+          <Table>
+            <thead>
+              <tr>
+                <th />
+                <th>Email</th>
+                <th>Nome</th>
+                <th>CPF</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <ButtonsCell>
+                  <IconButton aria-label="Editar" title="Editar">
+                    <EditIcon />
+                  </IconButton>
+                  <IconButton aria-label="Deletar" title="Deletar">
+                    <DeleteIcon />
+                  </IconButton>
+                </ButtonsCell>
+                <td>Jander.silv@outlook.com</td>
+                <td>João da Silva Siqueira</td>
+                <td>055.373.570-54</td>
+              </tr>
+              <tr>
+                <ButtonsCell>
+                  <IconButton>
+                    <EditIcon />
+                  </IconButton>
+                  <IconButton>
+                    <DeleteIcon />
+                  </IconButton>
+                </ButtonsCell>
+                <td>Jander.silv@outlook.com</td>
+                <td>João da Silva Siqueira</td>
+                <td>055.373.570-54</td>
+              </tr>
+            </tbody>
+          </Table>
+        </TableContainer>
       </TableWrapper>
     </main>
   )

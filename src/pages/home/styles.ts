@@ -43,6 +43,10 @@ export const TableWrapper = styled.section`
     margin-top: ${space[4]};
   `}
 `
+export const TableContainer = styled.div`
+  width: 100%;
+  overflow-x: auto;
+`
 export const Table = styled.table`
   ${({ theme: { space, colors } }) => css`
     width: 100%;
@@ -64,10 +68,15 @@ export const Table = styled.table`
     & td {
       color: ${colors.gray100};
     }
+    & td:not(:first-child) {
+      min-width: 200px;
+      padding: ${space[1]};
+    }
   `}
 `
 export const ButtonsCell = styled.td`
   ${({ theme: { space } }) => css`
+    min-width: 120px;
     display: flex;
     gap: ${space[1]};
   `}
