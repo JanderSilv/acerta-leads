@@ -1,3 +1,4 @@
+import { Form as FormikForm } from 'formik'
 import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
@@ -9,7 +10,7 @@ export const Wrapper = styled.div`
   `}
 `
 
-export const Form = styled.form`
+export const Form = styled(FormikForm)`
   ${({ theme: { colors, space, radii } }) => css`
     padding: ${space[3]};
     border-radius: ${radii.box};
@@ -20,7 +21,7 @@ export const FormContainer = styled.div`
   ${({ theme: { space, media } }) => css`
     display: grid;
     grid-template-columns: 1fr;
-    gap: ${space[3]} ${space[7]};
+    gap: ${space[1]} ${space[7]};
 
     @media ${media.sm} {
       grid-template-columns: repeat(2, 1fr);
@@ -74,7 +75,7 @@ export const Table = styled.table`
   `}
 `
 export const ButtonsCell = styled.td`
-  ${({ theme: { space, colors } }) => css`
+  ${({ theme: { space } }) => css`
     display: flex;
     gap: ${space[3]};
   `}
