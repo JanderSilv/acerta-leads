@@ -7,4 +7,6 @@ type Props<T extends React.ElementType> = typeof ButtonComponent['defaultProps']
 export type ButtonProps<T extends React.ElementType> = Props<T> &
   Omit<React.ComponentPropsWithoutRef<T>, keyof Props<T>>
 
-export const Button = <T extends React.ElementType = 'button'>(props: ButtonProps<T>) => <ButtonComponent {...props} />
+export const Button = <T extends React.ElementType = 'button'>({ as, ...rest }: ButtonProps<T>) => (
+  <ButtonComponent as={as || 'button'} {...rest} />
+)

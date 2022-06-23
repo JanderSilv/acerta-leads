@@ -6,4 +6,6 @@ type Props<T extends React.ElementType> = typeof TitleComponent['defaultProps'] 
 
 export type TitleProps<T extends React.ElementType> = Props<T> & Omit<React.ComponentPropsWithoutRef<T>, keyof Props<T>>
 
-export const Title = <T extends React.ElementType = 'h1'>(props: TitleProps<T>) => <TitleComponent {...props} />
+export const Title = <T extends React.ElementType = 'h1'>({ as, ...rest }: TitleProps<T>) => (
+  <TitleComponent as={as || 'h1'} {...rest} />
+)
