@@ -1,5 +1,5 @@
-import { forwardRef, ReactElement, Ref } from 'react'
-import { Field } from 'formik'
+import { Children, cloneElement, forwardRef, ReactElement, Ref } from 'react'
+import { Field, FieldProps } from 'formik'
 import { Title } from '../title'
 import { ChevronDownIcon, HelperText, InputComponent, InputGroupComponent, SelectComponent } from './styles'
 
@@ -35,17 +35,26 @@ export type InputGroupProps = typeof InputGroupComponent['defaultProps'] & {
 }
 
 export const InputGroup = forwardRef((props: InputGroupProps, ref: Ref<HTMLDivElement>) => {
-  const { label, helperText, error, children, ...rest } = props
+  const { disabled, label, helperText, error, children, ...rest } = props
+
+  const clone = Children.map(children, child => {
+    if (child.type === Input || child.type === InputField) return cloneElement(child, { ...child.props, disabled })
+    return child
+  })
 
   return (
-    <InputGroupComponent {...rest} ref={ref}>
+    <InputGroupComponent {...rest} ref={ref} disabled={disabled}>
       {!!label && (
         <Title as="label" htmlFor={children.props.id} size={3}>
           {label}
         </Title>
       )}
-      {children}
-      {(!!helperText || !!error) && <HelperText error={!!error}>{error || helperText}</HelperText>}
+      {clone}
+      {
+        <HelperText show={!!helperText || !!error} error={!!error}>
+          {error || helperText}
+        </HelperText>
+      }
     </InputGroupComponent>
   )
 })

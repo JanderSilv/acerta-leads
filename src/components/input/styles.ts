@@ -16,6 +16,12 @@ const input = css`
 
     position: relative;
     appearance: none;
+    transition: all 0.2s ease-in-out;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
   `}
 `
 export const InputComponent = styled.input`
@@ -37,8 +43,20 @@ export const ChevronDownIcon = styled(ChevronDown)`
   z-index: 2;
 `
 
-export const InputGroupComponent = styled.div`
+type InputGroupComponentProps = {
+  disabled?: boolean
+}
+
+export const InputGroupComponent = styled.div<InputGroupComponentProps>`
   position: relative;
+  transition: all 0.2s ease-in-out;
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      opacity: 0.6;
+    `}
+
   & > label {
     margin-bottom: 5px;
     display: block;
@@ -46,12 +64,18 @@ export const InputGroupComponent = styled.div`
 `
 
 type HelperTextProps = {
+  show?: boolean
   error?: boolean
 }
 export const HelperText = styled.span<HelperTextProps>`
-  ${({ error, theme: { colors, fontSizes, space } }) => css`
+  ${({ error, show, theme: { colors, fontSizes, space } }) => css`
+    min-height: 14px;
     margin-top: ${space[1]};
+
     color: ${!error ? colors.black100 : 'red'};
     font-size: ${fontSizes[1]};
+
+    display: block;
+    visibility: ${show ? 'visible' : 'hidden'};
   `}
 `
