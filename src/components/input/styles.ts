@@ -44,3 +44,14 @@ export const InputGroupComponent = styled.div`
     display: block;
   }
 `
+
+type HelperTextProps = {
+  error?: boolean
+}
+export const HelperText = styled.span<HelperTextProps>`
+  ${({ error, theme: { colors, fontSizes, space } }) => css`
+    margin-top: ${space[1]};
+    color: ${!error ? colors.black100 : 'red'};
+    font-size: ${fontSizes[1]};
+  `}
+`

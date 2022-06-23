@@ -1,7 +1,7 @@
 import { forwardRef, ReactElement, Ref } from 'react'
 import { Field } from 'formik'
 import { Title } from '../title'
-import { ChevronDownIcon, InputComponent, InputGroupComponent, SelectComponent } from './styles'
+import { ChevronDownIcon, HelperText, InputComponent, InputGroupComponent, SelectComponent } from './styles'
 
 export type InputProps = typeof InputComponent['defaultProps']
 
@@ -29,11 +29,13 @@ Select.displayName = 'Select'
 
 export type InputGroupProps = typeof InputGroupComponent['defaultProps'] & {
   label?: string
+  helperText?: string
+  error?: string
   children: ReactElement<InputProps>
 }
 
 export const InputGroup = forwardRef((props: InputGroupProps, ref: Ref<HTMLDivElement>) => {
-  const { label, children, ...rest } = props
+  const { label, helperText, error, children, ...rest } = props
 
   return (
     <InputGroupComponent {...rest} ref={ref}>
@@ -43,6 +45,7 @@ export const InputGroup = forwardRef((props: InputGroupProps, ref: Ref<HTMLDivEl
         </Title>
       )}
       {children}
+      {(!!helperText || !!error) && <HelperText error={!!error}>{error || helperText}</HelperText>}
     </InputGroupComponent>
   )
 })
