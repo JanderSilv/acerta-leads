@@ -1,9 +1,10 @@
 import { useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Formik } from 'formik'
 
 import { CPFMask, CPFUnmask } from 'src/helpers'
 import { MaritalStatus, Lead } from 'src/models'
+import { leadsService, LeadResponse } from 'src/services'
 import { validationSchema } from './validation'
 
 import { Button, InputField, InputGroup, LayoutTitle, SelectField } from 'src/components'
@@ -16,25 +17,42 @@ const MaritalStatusOptions = {
   [MaritalStatus.Widowed]: 'Viúvo(a)'
 }
 
-const initialValues: User = {
-  name: '',
-  cpf: '',
-  email: '',
-  maritalStatus: '',
-  spouseName: ''
-}
+const makeInitialValues = (initialValues?: LeadResponse): Lead =>
+  initialValues
+    ? {
+        ...initialValues,
+        cpf: CPFMask(initialValues.cpf)
+      }
+    : {
+        name: '',
+        cpf: '',
+        email: '',
+        maritalStatus: '',
+        spouseName: ''
+      }
 
 const Register = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
   const spouseNameInputRef = useRef<HTMLInputElement>(null)
 
-  const handleSubmit = (values: User) => {
-    console.log(values)
+  const userState = location.state as LeadResponse
+
+  const handleSubmit = async (values: Lead) => {
+    try {
+      if (!userState) await leadsService.create({ ...values, cpf: CPFUnmask(values.cpf) })
+      else await leadsService.update(userState.id, { ...userState, ...values, cpf: CPFUnmask(values.cpf) })
+      navigate('/')
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
     <main>
-      <LayoutTitle>Cadastro de Lead</LayoutTitle>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
+      <LayoutTitle>{!userState ? 'Cadastro de Lead' : 'Atualização de Lead'}</LayoutTitle>
+
+      <Formik initialValues={makeInitialValues(userState)} onSubmit={handleSubmit} validationSchema={validationSchema}>
         {({ values, setFieldValue, handleChange, dirty, errors }) => (
           <Form>
             <FormContainer>
@@ -93,7 +111,7 @@ const Register = () => {
                 Cancelar
               </Button>
               <Button type="submit" disabled={!dirty}>
-                Cadastrar
+                {!userState ? 'Cadastrar' : 'Atualizar'}
               </Button>
             </ButtonsContainer>
           </Form>
