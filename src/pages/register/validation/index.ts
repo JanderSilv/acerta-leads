@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 import { isCPFValid } from 'src/helpers'
-import { MaritalStatus } from '../models'
+import { MaritalStatus } from 'src/models'
 
 export const validationSchema = yup.object().shape({
   name: yup.string().required('O nome é obrigatório').min(3, 'O nome deve ter no mínimo 3 caracteres'),

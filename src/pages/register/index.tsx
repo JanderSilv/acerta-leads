@@ -2,8 +2,8 @@ import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Formik } from 'formik'
 
-import { CPFMask } from 'src/helpers'
-import { MaritalStatus, User } from './models'
+import { CPFMask, CPFUnmask } from 'src/helpers'
+import { MaritalStatus, Lead } from 'src/models'
 import { validationSchema } from './validation'
 
 import { Button, InputField, InputGroup, LayoutTitle, SelectField } from 'src/components'
