@@ -110,9 +110,7 @@ const Register = () => {
               <Button as={Link} to="/">
                 Cancelar
               </Button>
-              <Button type="submit" disabled={!dirty}>
-                {!userState ? 'Cadastrar' : 'Atualizar'}
-              </Button>
+              <Button disabled={!dirty}>{!userState ? 'Cadastrar' : 'Atualizar'}</Button>
             </ButtonsContainer>
           </Form>
         )}

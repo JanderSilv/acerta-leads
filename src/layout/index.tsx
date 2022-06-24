@@ -13,7 +13,7 @@ const LayoutComponent = ({ children }: LayoutProps) => {
   return (
     <Wrapper>
       <Container>
-        <Logo src={acertaLogo} alt="Logo da Acerta" width="240" height="100" loading="lazy" draggable="false" />
+        <Logo src={acertaLogo} alt="Logo da Acerta" width="240" height="100" draggable="false" />
         <Title>{title}</Title>
         <Suspense fallback={<Loading>Carregando...</Loading>}>{children}</Suspense>
       </Container>
